@@ -1,0 +1,32 @@
+﻿@model List<Gamely.Models.Game>
+@{
+    ViewBag.Title = "Игры";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Игры</h2>
+
+@Html.ActionLink("Добавить", "New", "Games", null, new { @class = "btn btn-primary" })
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Игра</th>
+            <th>Жанр</th>
+            <th>Управление игрой</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var game in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(game.Name, "Details", "Games", new { id = game.Id }, null)</td>
+                <td>@game.GameGenre.Name</td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", "Games", new { id = game.Id }, null) |
+                    @Html.ActionLink("Удалить", "Delete", "Games", new { id = game.Id }, null)
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

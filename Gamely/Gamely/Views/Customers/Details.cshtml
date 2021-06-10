@@ -1,0 +1,17 @@
+﻿@model Gamely.Models.Customer
+@{
+    ViewBag.Title = "Детали";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Тип подписки: @Model.MembershipType.TypeName</li>
+    @{ 
+        if (Model.Birthdate != null)
+            {
+                <li>Дата рождения: @Model.Birthdate.Value.ToString("d")</li>
+            }
+    }
+</ul>

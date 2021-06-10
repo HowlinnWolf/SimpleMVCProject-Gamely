@@ -1,0 +1,17 @@
+﻿@model Gamely.Models.Game
+@{
+    ViewBag.Title = "Удаление";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Подтвердите удаление</h2>
+
+<div>
+    <p>Вы действительно хотите удалить игру <i>@Model.Name</i>?</p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger" value="Delete">Удалить</button>
+}

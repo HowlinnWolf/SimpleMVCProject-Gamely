@@ -1,0 +1,38 @@
+﻿@model List<Gamely.Models.Customer>
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Пользователи</h2>
+
+@Html.ActionLink("Добавить", "New", "Customers", null, new { @class = "btn btn-primary" })
+@if (!Model.Any())
+{
+    <text>У нас ещё нет пользователей.</text>
+}
+else
+{
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Тип подписки</th>
+                <th>Управление пользователем</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                    <td>@customer.MembershipType.TypeName</td>
+                    <td>
+                        @Html.ActionLink("Редактировать", "Edit", "Customers", new { id = customer.Id }, null) | 
+                        @Html.ActionLink("Удалить", "Delete", "Customers", new { id = customer.Id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
